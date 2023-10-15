@@ -1,0 +1,55 @@
+- name: Deploy CIFAR-10 Flask App from GitHub
+  gather_facts: no
+  vars:
+      ansible_user: "adminuser"
+  hosts: localhost  # Replace with the hostname or IP address of your target host
+  become: yes
+  tasks:
+    - name: Update apt package cache (for Debian-based systems)
+      apt:
+        update_cache: yes
+
+
+    - name: Make sure required packages are installed
+      apt: 
+        pkg=nginx,git,python3.8,python3.8-venv,gettext
+        state=present
+
+
+    - name: Clone the GitHub repository
+      git:
+        repo: https://github.com/Yur4ik1234/CIFAR-10-flask.git
+        dest: /home/{{ ansible_user }}/sites
+        update: yes
+        force: yes
+
+    - name: Install dependencies
+      pip:
+        requirements: /home/{{ ansible_user }}/sites/requirements.txt
+        virtualenv: /home/{{ ansible_user }}/sites/venv/
+        virtualenv_command: /usr/bin/python3.8 -m venv
+
+    - name: Create a Gunicorn systemd service
+      template:
+        src: /home/yura/CIFAR-10-flask/deploy/gunicorn.j2
+        dest: /etc/systemd/system/gunicorn.service
+      notify: Reload systemd
+
+    - name: Ensure Gunicorn service is started and enabled
+      systemd:
+        name: gunicorn
+        state: started
+        enabled: yes
+
+    - name: Create an Nginx site configuration
+      template:
+        src: /home/yura/CIFAR-10-flask/deploy/site-available.j2
+        dest: /etc/nginx/sites-available/cifar-10-flask
+      notify: Reload Nginx
+
+    - name: Enable the Nginx site configuration
+      file:
+        src: /etc/nginx/sites-available/cifar-10-flask
+        dest: /etc/nginx/sites-enabled/cifar-10-flask
+        state: link
+      notify: Reload Nginx
