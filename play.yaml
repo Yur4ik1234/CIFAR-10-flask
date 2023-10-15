@@ -23,11 +23,17 @@
         update: yes
         force: yes
 
+    - name: Create a Python virtual environment
+      command: python3 -m venv /home/{{ ansible_user }}/sites/venv
+      args:
+        creates: /home/{{ ansible_user }}/sites/venv
+
+
     - name: Install dependencies
       pip:
         requirements: /home/{{ ansible_user }}/sites/requirements.txt
         virtualenv: /home/{{ ansible_user }}/sites/venv/
-        virtualenv_command: /usr/bin/python3.8 -m venv
+
 
     - name: Create a Gunicorn systemd service
       template:
