@@ -33,7 +33,8 @@
       pip:
         requirements: /home/{{ ansible_user }}/sites/requirements.txt
         virtualenv: /home/{{ ansible_user }}/sites/venv/
-
+        become: yes
+        timeout: 900
 
     - name: Create a Gunicorn systemd service
       template:
