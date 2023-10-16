@@ -2,6 +2,7 @@
   gather_facts: no
   vars:
       ansible_user: "adminuser"
+      host: "localhost"
   hosts: localhost  # Replace with the hostname or IP address of your target host
   become: yes
   tasks:
@@ -36,8 +37,9 @@
     - name: Create a Gunicorn systemd service
       template:
         src: /home/yura/CIFAR-10-flask/deploy/gunicorn.j2
-        dest: /etc/systemd/system/gunicorn.service
-      notify: Reload systemd
+        dest: /etc/systemd/system/gunicorn-{{ host }}.service
+      notify: 
+        - Restart gunicorn
 
     - name: Ensure Gunicorn service is started and enabled
       systemd:

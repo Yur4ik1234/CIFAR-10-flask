@@ -1,0 +1,26 @@
+[
+  {
+    "dnsSettings": {
+      "domainNameLabel": "vm1.deploy-vmsc-ubuntu",
+      "fqdn": "vm1.deploy-vmsc-ubuntu.westeurope.cloudapp.azure.com"
+    },
+    "etag": "W/\"53c5f0f4-6d34-48e7-bd02-4152f5c887ad\"",
+    "id": "/subscriptions/56dd31dc-6cb9-475e-91f5-235a0a5bd408/resourceGroups/azure-resource_group/providers/Microsoft.Compute/virtualMachineScaleSets/example-vmss/virtualMachines/1/networkInterfaces/vmss-net/ipConfigurations/internal/publicIPAddresses/pip",
+    "idleTimeoutInMinutes": 4,
+    "ipAddress": "52.174.125.247",
+    "ipConfiguration": {
+      "id": "/subscriptions/56dd31dc-6cb9-475e-91f5-235a0a5bd408/resourceGroups/azure-resource_group/providers/Microsoft.Compute/virtualMachineScaleSets/example-vmss/virtualMachines/1/networkInterfaces/vmss-net/ipConfigurations/internal",
+      "resourceGroup": "azure-resource_group"
+    },
+    "ipTags": [],
+    "name": "pip",
+    "provisioningState": "Succeeded",
+    "publicIPAddressVersion": "IPv4",
+    "publicIPAllocationMethod": "Dynamic",
+    "resourceGroup": "azure-resource_group",
+    "resourceGuid": "e98b1a3b-9405-4f1d-80bf-22bed2c6493b",
+    "sku": {
+      "name": "Basic"
+    }
+  }
+]
