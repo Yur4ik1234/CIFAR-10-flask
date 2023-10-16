@@ -30,11 +30,8 @@
 
 
     - name: Install dependencies
-      pip:
-        requirements: /home/{{ ansible_user }}/sites/requirements.txt
-        virtualenv: /home/{{ ansible_user }}/sites/venv/
-        become: yes
-        timeout: 900
+      command: timeout 900 /home/{{ ansible_user }}/sites/venv/bin/pip install -r /home/{{ ansible_user }}/sites/requirements.txt
+      become: yes
 
     - name: Create a Gunicorn systemd service
       template:
