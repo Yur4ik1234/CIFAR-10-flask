@@ -1,6 +1,6 @@
 ansible==4.10.0
 ansible-core==2.11.12
-Pillow==9.2.0
+Pillow==8.4.0
 flask==2.0.0
 keras==2.11.0
 tensorflow==2.11.0
