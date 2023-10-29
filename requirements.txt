@@ -1,5 +1,5 @@
 ansible==4.10.0
-ansible-core==2.12.1
+ansible-core==2.11.12
 asgiref==3.4.1
 async-generator==1.10
 attrs==21.4.0
