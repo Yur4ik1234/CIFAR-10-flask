@@ -4,6 +4,7 @@ from app import app, allowed_file, predict
 from flask import Flask
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
+from tensorflow.keras.preprocessing.image import img_to_array, load_img
 
 class TestApp(unittest.TestCase):
     def setUp(self):
@@ -20,7 +21,7 @@ class TestApp(unittest.TestCase):
         self.assertTrue(allowed_file("img3.jpg"))
 
     def test_predict(self):
-        image_path = 'Testing-data/'  # Replace with an actual image path
+        image_path = './Testing-data/img2.jpg'  # Replace with an actual image path
         img = img_to_array(load_img(image_path, target_size=(32, 32)))
         img = img.reshape(1, 32, 32, 3)
         img = img.astype('float32')
