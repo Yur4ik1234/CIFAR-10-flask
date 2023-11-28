@@ -37,11 +37,11 @@ def predict(filename , model):
     res = result[0]
     res.sort()
     res = res[::-1]
-    prob = res[:9]
+    prob = res[:10]
     
     prob_result = []
     class_result = []
-    for i in range(8):
+    for i in range(10):
         prob_result.append((prob[i]*100).round(2))
         class_result.append(dict_result[prob[i]])
 
