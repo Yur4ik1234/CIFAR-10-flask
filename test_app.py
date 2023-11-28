@@ -27,8 +27,8 @@ class TestApp(unittest.TestCase):
         img = img.astype('float32')
         img = img / 255.0
         class_result, prob_result = predict(image_path, self.model)
-        self.assertEqual(len(class_result), 10)
-        self.assertEqual(len(prob_result), 10)
+        self.assertEqual(len(class_result), 8)
+        self.assertEqual(len(prob_result), 8)
 
     def test_success_route(self):
         response = self.app.get('/success')
