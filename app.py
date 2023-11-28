@@ -37,7 +37,7 @@ def predict(filename , model):
     res = result[0]
     res.sort()
     res = res[::-1]
-    prob = res[:3]
+    prob = res[:9]
     
     prob_result = []
     class_result = []
